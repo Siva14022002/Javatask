@@ -107,7 +107,14 @@ class LibraryManager {
     private void deleteBook() {
         System.out.print("Enter the exact title of the book to delete: ");
         String titleToDelete = scanner.nextLine();
-        boolean removed = books.removeIf(book -> book.getTitle().equalsIgnoreCase(titleToDelete));
+        boolean removed = false;
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(i).getTitle().equalsIgnoreCase(titleToDelete)) {
+                books.remove(i);
+                removed = true;
+                break;
+            }
+        }
 
         if (removed) {
             System.out.println("Book deleted successfully.");
